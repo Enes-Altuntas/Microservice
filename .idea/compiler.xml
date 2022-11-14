@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="stock-service" />
         <module name="purchase-service" />
+        <module name="api-gateway" />
         <module name="product-service" />
         <module name="config-server" />
         <module name="naming-server" />
@@ -21,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="naming-server" options="-parameters" />
       <module name="product-service" options="-parameters" />
