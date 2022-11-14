@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: productdb
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+  product-service:
+    restart: always
+    environment:
+      HOST: db
+      PORT: 5432
+      USER: postgres
+      DATABASE: productdb
+      PASSWORD: password
+    build:
+      context: product-service
+      dockerfile: ./Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  purchase-service:
+    restart: always
+    environment:
+      HOST: db
+      PORT: 5432
+      USER: postgres
+      DATABASE: productdb
+      PASSWORD: password
+    build:
+      context: purchase-service
+      dockerfile: ./Dockerfile
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
