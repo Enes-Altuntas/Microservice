@@ -18,7 +18,9 @@ public class Purchase {
     @GeneratedValue(generator = "GEN_PURCHASE", strategy = GenerationType.SEQUENCE)
     private int id;
 
+    @Column(name = "PRODUCT_ID")
     private int productId;
 
-    private int
+    @Column(name = "QUANTITY")
+    private int quantity;
 }
