@@ -18,31 +18,31 @@ public class ProductController {
     }
 
     @PostMapping
-    private ResponseEntity<Integer> SaveProduct(@RequestBody ProductDTO request) {
+    private ResponseEntity<Integer> saveProduct(@RequestBody ProductDTO request) {
         Integer productId = productService.saveProduct(request);
         return new ResponseEntity<>(productId, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<ProductDTO> GetProduct(@PathVariable int id) {
+    private ResponseEntity<ProductDTO> getProduct(@PathVariable int id) {
         ProductDTO productDTO = productService.getProduct(id);
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
     @GetMapping
-    private ResponseEntity<List<ProductDTO>> GetAllProducts() {
+    private ResponseEntity<List<ProductDTO>> getAllProducts() {
         List<ProductDTO> productDTOList = productService.getAllProduct();
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    private ResponseEntity<Integer> UpdateProduct(@PathVariable int id, @RequestBody ProductDTO productDTO) {
+    private ResponseEntity<Integer> updateProduct(@PathVariable int id, @RequestBody ProductDTO productDTO) {
         Integer productId = productService.updateProduct(id, productDTO);
         return new ResponseEntity<>(productId, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    private ResponseEntity<Integer> DeleteProduct(@PathVariable int id) {
+    private ResponseEntity<Integer> deleteProduct(@PathVariable int id) {
         Integer productId = productService.deleteProduct(id);
         return new ResponseEntity<>(productId, HttpStatus.OK);
     }

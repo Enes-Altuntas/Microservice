@@ -1,10 +1,12 @@
 package com.ea.purchaseservice.Entity.Purchase;
 
+import com.ea.purchaseservice.Entity.PurchaseItem.PurchaseItem;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Purchases")
@@ -18,9 +20,13 @@ public class Purchase {
     @GeneratedValue(generator = "GEN_PURCHASE", strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column(name = "PRODUCT_ID")
-    private int productId;
+    @Column(name = "TOTAL_PRICE")
+    private double totalPrice;
 
-    @Column(name = "QUANTITY")
-    private int quantity;
+    @Column(name = "USER_ID")
+    private int userId;
+
+    @OneToMany(mappedBy = "purchase", orphanRemoval = true)
+    @Column(name = "PURCHASE_ITEM_ID")
+    private List<PurchaseItem> purchaseItem;
 }
